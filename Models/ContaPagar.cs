@@ -9,50 +9,59 @@ namespace InfoWeb.Models
         public int pag_codigo { get; set; }
 
         [MaxLength(30)]
-        public string? pag_id_refs { get; set; }
+        public string pag_id_refs { get; set; } = null!;
 
         [MaxLength(50)]
-        public string? pag_documento { get; set; }
+        public string pag_documento { get; set; } = null!;
 
-        [MaxLength(15)]
-        public required decimal pag_vlrdoc { get; set; }
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [Required]
+        public decimal pag_vlrdoc { get; set; }
 
-        [MaxLength(15)]
-        public required decimal pag_vlrdesc { get; set; }
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [Required]
+        public decimal pag_vlrdesc { get; set; }
 
-        [MaxLength(15)]
-        public required decimal pag_vlracresc { get; set; }
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [Required]
+        public decimal pag_vlracresc { get; set; }
 
-        [MaxLength(15)]
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
         public decimal pag_vlrmulta { get; set; }
 
-        [MaxLength(15)]
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
         public decimal pag_vlrpagar { get; set; }
 
-        [MaxLength(15)]
+        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
         public decimal pag_vlrpago { get; set; }
 
         [MaxLength(60)]
-        public string? pag_historico { get; set; }
+        public string pag_historico { get; set; } = null!;
 
         [MaxLength(60)]
-        public string? pag_numNfe { get; set; }
+        public string pag_numNfe { get; set; } = null!;
 
         [MaxLength(1)]
-        public required string pag_situacao { get; set; }
+        [Required]
+        public string pag_situacao { get; set; } = "P";
 
-        public DateTime? pag_dtvenc { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime pag_dtvenc { get; set; }
 
-        public DateTime? pag_dtlanc { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime pag_dtlanc { get; set; }
 
-        public DateTime? pag_dtpag { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime pag_dtpag { get; set; }
 
-        public DateTime? pag_dtcomp { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime pag_dtcomp { get; set; }
 
-        public required TimeSpan pag_hora { get; set; }
+        [Required]
+        public TimeSpan pag_hora { get; set; }
 
         [ForeignKey("Loja")]
-        public int? loj_codigo { get; set; } = 1;
+        public int loj_codigo { get; set; } = 1;
 
         [ForeignKey("FormaPag")]
         public int fpg_codigo { get; set; } = 1;
@@ -63,20 +72,23 @@ namespace InfoWeb.Models
         [ForeignKey("CentroCusto")]
         public int? cen_codigo { get; set; }
 
-        public required bool debtesouraria { get; set; }
+        public required bool pag_debtesouraria { get; set; }
 
         [ForeignKey("Tesouraria")]
         public int? tes_codigo { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime pag_dtcadastro { get; set; }
 
-        public required DateTime pag_dtcadastro { get; set; }
-
-        public required DateTime pag_dtalteracao { get; set; } = DateTime.Now;
-
-        [ForeignKey("Usuario")]
-        public required int pag_usu_cadastro { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime pag_dtalteracao { get; set; } = DateTime.Now;
 
         [ForeignKey("Usuario")]
-        public required int pag_usu_alteracao { get; set; }
+        [Required]
+        public int pag_usu_cadastro { get; set; }
+
+        [ForeignKey("Usuario")]
+        [Required]
+        public int pag_usu_alteracao { get; set; }
     }
 }
