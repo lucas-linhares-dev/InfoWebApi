@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 using System.Reflection.Metadata;
 
 namespace InfoWeb.Models
@@ -18,10 +19,28 @@ namespace InfoWeb.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Tesouraria> Tesourarias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-
+        public DbSet<ConfigPerfilLoja> ConfigsPerfilLoja { get; set; }
+        public DbSet<ConfigPermissaoUsuario> ConfigsPermissaoUsuario { get; set; }
+        public DbSet<CstCofins> CstsCofins { get; set; }
+        public DbSet<CstIcms> CstsIcms { get; set; }
+        public DbSet<CstIpi> CstsIpi { get; set; }
+        public DbSet<CstPis> CstsPis { get; set; }
+        public DbSet<Estoque> Estoques { get; set; }
+        public DbSet<Ica> Icas { get; set; }
+        public DbSet<Municipio> Municipios { get; set; }
+        public DbSet<NafCfop> NafsCfop { get; set; }
+        public DbSet<OpcaoPerfilLoja> OpcoesPerfilLoja { get; set; }
+        public DbSet<OpcaoPermissaoUsuario> OpcoesPermissaoUsuario { get; set; }
+        public DbSet<PerfilLoja> PerfisLoja { get; set; }
+        public DbSet<PermissaoUsuario> PermissoesUsuario { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<ProdutoLotacao> ProdutosLotacao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<OpcaoPerfilLoja>().HasNoKey();
+            modelBuilder.Entity<OpcaoPermissaoUsuario>().HasNoKey();
+
             modelBuilder.Entity<ContaPagar>()
                 .HasOne<FormaPag>()
                 .WithMany()
@@ -35,6 +54,7 @@ namespace InfoWeb.Models
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }
 
