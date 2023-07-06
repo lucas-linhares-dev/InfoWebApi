@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InfoWeb.Attributes;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InfoWeb.Models
@@ -14,25 +15,25 @@ namespace InfoWeb.Models
         [MaxLength(50)]
         public string pag_documento { get; set; } = null!;
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         [Required]
         public decimal pag_vlrdoc { get; set; }
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         [Required]
         public decimal pag_vlrdesc { get; set; }
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         [Required]
         public decimal pag_vlracresc { get; set; }
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         public decimal pag_vlrmulta { get; set; }
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         public decimal pag_vlrpagar { get; set; }
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         public decimal pag_vlrpago { get; set; }
 
         [MaxLength(60)]

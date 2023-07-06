@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InfoWeb.Attributes;
 
 namespace InfoWeb.Models
 {
@@ -48,16 +49,16 @@ namespace InfoWeb.Models
         public bool pro_situacao { get; set; } = true;
 
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")]
+        [DecimalPrecision]
         public decimal pro_prccompra { get; set; } = decimal.Zero;
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")]
+        [DecimalPrecision]
         public decimal pro_prccusto { get; set; } = decimal.Zero;
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")]
+        [DecimalPrecision]
         public decimal pro_prctransf { get; set; } = decimal.Zero;
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")]
+        [DecimalPrecision]
         public decimal pro_prccomprant { get; set; } = decimal.Zero;
 
         public string pro_img { get; set; } = null!;

@@ -1,4 +1,5 @@
 ﻿
+using InfoWeb.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,7 +20,7 @@ namespace InfoWeb.Models
         [Required]
         public string tes_tipo { get; set; } = "D";
 
-        [RegularExpression(@"^\d{1,12}(\.\d{1,2})?$")] // MAXIMO 12 DIGITOS INTEIROS E 2 DECIMAIS
+        [DecimalPrecision]
         [Required]
         public decimal tes_valor { get; set; } = decimal.Zero; 
 
