@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfoWeb.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ConnectionContextModelSnapshot : ModelSnapshot
+    partial class ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,48 @@ namespace InfoWeb.Migrations
                     b.HasKey("cen_codigo");
 
                     b.ToTable("CentrosCusto");
+                });
+
+            modelBuilder.Entity("InfoWeb.Models.ConfigModuloSistemaLoja", b =>
+                {
+                    b.Property<long>("cml_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(1);
+
+                    b.Property<long>("mds_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(2);
+
+                    b.Property<bool>("cml_situacao")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("loj_codigo")
+                        .HasColumnType("int");
+
+                    b.HasKey("cml_codigo", "mds_codigo");
+
+                    b.ToTable("ConfigsModuloSistemaLoja");
+                });
+
+            modelBuilder.Entity("InfoWeb.Models.ConfigModuloSistemaUsuario", b =>
+                {
+                    b.Property<long>("cmu_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(1);
+
+                    b.Property<long>("mds_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(2);
+
+                    b.Property<bool>("cmu_situacao")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("usu_codigo")
+                        .HasColumnType("int");
+
+                    b.HasKey("cmu_codigo", "mds_codigo");
+
+                    b.ToTable("ConfigsModuloSistemaUsuario");
                 });
 
             modelBuilder.Entity("InfoWeb.Models.ConfigPerfilLoja", b =>
@@ -299,6 +341,126 @@ namespace InfoWeb.Migrations
                     b.HasKey("pis_codigo");
 
                     b.ToTable("CstsPis");
+                });
+
+            modelBuilder.Entity("InfoWeb.Models.Entrada", b =>
+                {
+                    b.Property<int>("eta_codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("eta_codigo"));
+
+                    b.Property<int>("cfo_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("eta_bc_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("eta_chave")
+                        .IsRequired()
+                        .HasMaxLength(44)
+                        .HasColumnType("nvarchar(44)");
+
+                    b.Property<decimal>("eta_cofins_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_desconto_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_deson_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("eta_dtalteracao")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("eta_dtbaixa")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("eta_dtcadastro")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("eta_dtemissao")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("eta_dtlanc")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("eta_frete_perc_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_frete_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<TimeSpan>("eta_hora")
+                        .HasColumnType("time");
+
+                    b.Property<decimal>("eta_icms_antecipado_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_icms_bc_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_icms_bcsubst_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_icms_subst_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_icms_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_ipi_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("eta_numeronf")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("eta_observacao")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("eta_outras_desp_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_pis_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("eta_protocoloxml")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<decimal>("eta_seguro_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("eta_situacao")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<decimal>("eta_total_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("eta_totalnf_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("eta_usu_alteracao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("eta_usu_cadastro")
+                        .HasColumnType("int");
+
+                    b.Property<int>("loj_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pes_codigo")
+                        .HasColumnType("int");
+
+                    b.HasKey("eta_codigo");
+
+                    b.ToTable("Entradas");
                 });
 
             modelBuilder.Entity("InfoWeb.Models.Estoque", b =>
@@ -559,6 +721,291 @@ namespace InfoWeb.Migrations
                     b.ToTable("Icas");
                 });
 
+            modelBuilder.Entity("InfoWeb.Models.ItemEntrada", b =>
+                {
+                    b.Property<int>("ita_codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ita_codigo"));
+
+                    b.Property<int>("cfo_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cof_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("eta_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("icm_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ipi_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ita_bc_subst")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_cofins_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_desconto_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_fcp_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_fcpret_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_fcpst_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_frete_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_icms_bc_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_icms_perc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_icms_perc_rec")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_icms_perc_subst")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_icms_vl")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_ipi_perc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_ipi_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_ipi_vlr_bc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_liquidovlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ita_nritem")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ita_outras_desp_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_pis_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_quantidade")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_seguro_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_total_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_unitario_vlr")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_vlr_deson")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_vlr_subst")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ita_vlrpercfrete")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("pis_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pro_codigo")
+                        .HasColumnType("int");
+
+                    b.HasKey("ita_codigo");
+
+                    b.ToTable("ItensEntrada");
+                });
+
+            modelBuilder.Entity("InfoWeb.Models.Loja", b =>
+                {
+                    b.Property<int>("loj_codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("loj_codigo"));
+
+                    b.Property<int>("cfo_ent_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cfo_sai_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cof_ent_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cof_sai_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("crt_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("icm_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("icmscrt_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ipi_ent_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ipi_sai_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("loj_bairro")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("loj_celular")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("loj_cep")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("loj_chaveMfe")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_cnpj")
+                        .IsRequired()
+                        .HasMaxLength(18)
+                        .HasColumnType("nvarchar(18)");
+
+                    b.Property<decimal>("loj_cof_perc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("loj_complemento")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("loj_csite")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("loj_dtalteracao")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("loj_dtcadastro")
+                        .HasColumnType("date");
+
+                    b.Property<string>("loj_email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_endereco")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_fantasia")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("loj_fone")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("loj_ie")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<string>("loj_im")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<decimal>("loj_ipi_perc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("loj_nfeObs")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_nomeabrev")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("loj_numero")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<decimal>("loj_pis_perc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("loj_razaosocial")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_referencia")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("loj_sefaz_codigo")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<bool>("loj_situacao")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("loj_usu_alteracao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("loj_usu_cadastro")
+                        .HasColumnType("int");
+
+                    b.Property<string>("loj_whatsapp")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("mun_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pis_ent_codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pis_sai_codigo")
+                        .HasColumnType("int");
+
+                    b.HasKey("loj_codigo");
+
+                    b.ToTable("Lojas");
+                });
+
             modelBuilder.Entity("InfoWeb.Models.Marca", b =>
                 {
                     b.Property<int>("mar_codigo")
@@ -587,6 +1034,24 @@ namespace InfoWeb.Migrations
                     b.HasKey("mar_codigo");
 
                     b.ToTable("Marcas");
+                });
+
+            modelBuilder.Entity("InfoWeb.Models.ModuloSistema", b =>
+                {
+                    b.Property<int>("mds_codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("mds_codigo"));
+
+                    b.Property<string>("mds_descricao")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("mds_codigo");
+
+                    b.ToTable("ModulosSistema");
                 });
 
             modelBuilder.Entity("InfoWeb.Models.Municipio", b =>
@@ -948,22 +1413,21 @@ namespace InfoWeb.Migrations
 
             modelBuilder.Entity("InfoWeb.Models.ProdutoLotacao", b =>
                 {
-                    b.Property<int>("lot_codigo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<long>("lot_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(1);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("lot_codigo"));
+                    b.Property<long>("pes_codigo")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(2);
 
                     b.Property<decimal>("lot_qtd_und_compra")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("pes_codigo")
-                        .HasColumnType("int");
-
                     b.Property<int>("pro_codigo")
                         .HasColumnType("int");
 
-                    b.HasKey("lot_codigo");
+                    b.HasKey("lot_codigo", "pes_codigo");
 
                     b.ToTable("ProdutosLotacao");
                 });

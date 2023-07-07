@@ -7,15 +7,17 @@ namespace InfoWeb.Models
     public class ProdutoLotacao
     {
         [Key]
-        public int lot_codigo { get; set; }
+        [Column(Order = 1)]
+        public long lot_codigo { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        [ForeignKey("Pessoa")]
+        public long pes_codigo { get; set; }
 
         [ForeignKey("Produto")]
         [Required]
         public int pro_codigo { get; set; }
-
-        [ForeignKey("Pessoa")]
-        [Required]
-        public int pes_codigo { get; set; }
 
         [DecimalPrecision]
         public decimal lot_qtd_und_compra { get; set; } = 1;

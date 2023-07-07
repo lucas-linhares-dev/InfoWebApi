@@ -34,6 +34,12 @@ namespace InfoWeb.Models
         public DbSet<PerfilLoja> PerfisLoja { get; set; }
         public DbSet<PermissaoUsuario> PermissoesUsuario { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<ConfigModuloSistemaLoja> ConfigsModuloSistemaLoja { get; set; }
+        public DbSet<ConfigModuloSistemaUsuario> ConfigsModuloSistemaUsuario { get; set; }
+        public DbSet<Entrada> Entradas { get; set; }
+        public DbSet<ItemEntrada> ItensEntrada { get; set; }
+        public DbSet<Loja> Lojas { get; set; }
+        public DbSet<ModuloSistema> ModulosSistema { get; set; }
         public DbSet<ProdutoLotacao> ProdutosLotacao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -53,6 +59,17 @@ namespace InfoWeb.Models
                 .HasForeignKey(c => c.cen_codigo)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProdutoLotacao>()
+                .HasKey(lot => new { lot.lot_codigo, lot.pes_codigo });
+
+
+            modelBuilder.Entity<ConfigModuloSistemaLoja>()
+                .HasKey(cml => new { cml.cml_codigo, cml.mds_codigo });
+
+
+            modelBuilder.Entity<ConfigModuloSistemaUsuario>()
+                .HasKey(cmu => new { cmu.cmu_codigo, cmu.mds_codigo });
         }
 
     }
