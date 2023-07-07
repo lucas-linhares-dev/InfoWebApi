@@ -34,10 +34,11 @@ public class FormaPagController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult InsertFormaPag(FormaPag FormaPag)
+    public IActionResult InsertFormaPag(FormaPag formaPag)
     {
-        FormaPagService.Add(FormaPag);
-        return CreatedAtAction(nameof(GetFormaPag), new { FormaPag.fpg_codigo }, FormaPag); // RETORNA A URL DE ACESSO AOS DADOS DA FormaPag RECÉM CRIADA + A FormaPag RECÉM CRIADA (PADRAO)
+        Console.WriteLine(formaPag);
+        FormaPagService.Add(formaPag);
+        return CreatedAtAction(nameof(GetFormaPag), new { formaPag.fpg_codigo }, formaPag); // RETORNA A URL DE ACESSO AOS DADOS DA FormaPag RECÉM CRIADA + A FormaPag RECÉM CRIADA (PADRAO)
 
     }
 
